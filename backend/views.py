@@ -22,12 +22,20 @@ class CommentList(ListCreateAPIView):
 class CommentDetail(RetrieveUpdateDestroyAPIView):
     permission_classes = (IsOwnerOrReadOnly,)
     queryset = Comment.objects.all()
+
+    # def get_object(self):
+    #     queryset = self.filter_queryset(self.get_queryset())
+    #     # make sure to catch 404's below
+    #     obj = queryset.get(pk=self.request.user.organisation_id)
+    #     self.check_object_permissions(self.request, obj)
+    #     return obj
+
+
     serializer_class = CommentSerializer
 
-#Remove
-class UserList(ListCreateAPIView):
-    queryset = get_user_model()
-    serializer_class = UserSerializer
+# class UserList(ListCreateAPIView):
+#     queryset = get_user_model()
+#     serializer_class = UserSerializer
 
 class UserCreate(CreateAPIView):
     model = get_user_model()
@@ -35,13 +43,4 @@ class UserCreate(CreateAPIView):
         permissions.AllowAny  # Or no users can register
     ]
     serializer_class = UserSerializer
-
-# class UserDelete(DestroyAPIView):
-#     pass
-#     # queryset = get_user_model()
-#     # serializer_class = UserSerializer
-#     # permission_classes=[]
-#     # def perform_destroy(self, instance):
-#     #     instance.delete_flag=True
-#     #     instance.save()
 
