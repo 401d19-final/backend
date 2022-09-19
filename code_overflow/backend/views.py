@@ -1,18 +1,33 @@
-from .models import Post
-from .serializers import PostSerializer, UserSerializer
-from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView, CreateAPIView, DestroyAPIView
+from .models import Question, Comment
+from .serializers import QuestionSerializer, UserSerializer, CommentSerializer
+from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView, CreateAPIView, DestroyAPIView, ListAPIView
 from django.contrib.auth import get_user_model
 from .permissions import IsOwnerOrReadOnly
 from rest_framework import permissions
 
-class PostList(ListCreateAPIView):
-    queryset = Post.objects.all()
-    serializer_class = PostSerializer
+class QuestionList(ListCreateAPIView):
+    queryset = Question.objects.all()
+    serializer_class = QuestionSerializer
 
-class PostDetail(RetrieveUpdateDestroyAPIView):
+class QuestionDetail(RetrieveUpdateDestroyAPIView):
     permission_classes = (IsOwnerOrReadOnly,)
-    queryset = Post.objects.all()
-    serializer_class = PostSerializer
+    queryset = Question.objects.all()
+    serializer_class = QuestionSerializer
+
+class CommentList(ListCreateAPIView):
+    queryset = Comment.objects.all()
+    serializer_class = CommentSerializer
+
+
+class CommentDetail(RetrieveUpdateDestroyAPIView):
+    permission_classes = (IsOwnerOrReadOnly,)
+    queryset = Comment.objects.all()
+    serializer_class = CommentSerializer
+
+#Remove
+class UserList(ListCreateAPIView):
+    queryset = get_user_model()
+    serializer_class = UserSerializer
 
 class UserCreate(CreateAPIView):
     model = get_user_model()
@@ -21,12 +36,12 @@ class UserCreate(CreateAPIView):
     ]
     serializer_class = UserSerializer
 
-class UserDelete(DestroyAPIView):
-    pass
-    # queryset = get_user_model()
-    # serializer_class = UserSerializer
-    # permission_classes=[]
-    # def perform_destroy(self, instance):
-    #     instance.delete_flag=True
-    #     instance.save()
+# class UserDelete(DestroyAPIView):
+#     pass
+#     # queryset = get_user_model()
+#     # serializer_class = UserSerializer
+#     # permission_classes=[]
+#     # def perform_destroy(self, instance):
+#     #     instance.delete_flag=True
+#     #     instance.save()
 

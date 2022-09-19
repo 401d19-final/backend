@@ -7,6 +7,6 @@ class IsOwnerOrReadOnly(permissions.BasePermission):
             return True
 
         if obj.username is None:
-            return False
+            return True
 
         return obj.username == request.user
