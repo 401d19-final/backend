@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     "rest_framework",
 
     #Project APP
-    "backend",
+    "overflow_app",
 ]
 
 MIDDLEWARE = [

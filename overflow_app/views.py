@@ -15,22 +15,13 @@ class QuestionDetail(RetrieveUpdateDestroyAPIView):
     serializer_class = QuestionSerializer
 
 class CommentList(ListCreateAPIView):
-    queryset = Comment.objects.all()
+    # queryset = Comment.objects.all()
     serializer_class = CommentSerializer
-
+    def get_queryset(self):
+        return Comment.objects.filter(question__id=self.kwargs['pk'])
 
 class CommentDetail(RetrieveUpdateDestroyAPIView):
-    permission_classes = (IsOwnerOrReadOnly,)
     queryset = Comment.objects.all()
-
-    # def get_object(self):
-    #     queryset = self.filter_queryset(self.get_queryset())
-    #     # make sure to catch 404's below
-    #     obj = queryset.get(pk=self.request.user.organisation_id)
-    #     self.check_object_permissions(self.request, obj)
-    #     return obj
-
-
     serializer_class = CommentSerializer
 
 # class UserList(ListCreateAPIView):
