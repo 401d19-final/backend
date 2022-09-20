@@ -7,7 +7,8 @@ class Question(models.Model):
     content = models.TextField("Content")
     created_time = models.DateTimeField("Time_created",auto_now_add=True)
     updated_time = models.DateTimeField("Time_updated", auto_now=True)
-    # level = models.CharField("Level",max_length = 64)
+    level = models.CharField("Level",max_length = 64)
+
     # category = models.CharField("Category",max_length = 64)
     def __str__(self):
         return self.title
