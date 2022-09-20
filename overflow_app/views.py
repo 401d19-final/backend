@@ -6,6 +6,7 @@ from .permissions import IsOwnerOrReadOnly
 from rest_framework import permissions
 
 class QuestionList(ListCreateAPIView):
+    permission_classes=(permissions.IsAuthenticatedOrReadOnly,)
     queryset = Question.objects.all()
     serializer_class = QuestionSerializer
 
@@ -14,19 +15,15 @@ class QuestionDetail(RetrieveUpdateDestroyAPIView):
     queryset = Question.objects.all()
     serializer_class = QuestionSerializer
 
-class CommentList(ListCreateAPIView):
-    # queryset = Comment.objects.all()
-    serializer_class = CommentSerializer
-    def get_queryset(self):
-        return Comment.objects.filter(question__id=self.kwargs['pk'])
-
 class CommentDetail(RetrieveUpdateDestroyAPIView):
+    permission_classes = (IsOwnerOrReadOnly,)
     queryset = Comment.objects.all()
     serializer_class = CommentSerializer
 
-# class UserList(ListCreateAPIView):
-#     queryset = get_user_model()
-#     serializer_class = UserSerializer
+class CommentList(ListCreateAPIView):
+    serializer_class = CommentSerializer
+    def get_queryset(self):
+        return Comment.objects.filter(question__id=self.kwargs['pk'])
 
 class UserCreate(CreateAPIView):
     model = get_user_model()
@@ -35,3 +32,6 @@ class UserCreate(CreateAPIView):
     ]
     serializer_class = UserSerializer
 
+class UserDetail(RetrieveUpdateDestroyAPIView):
+    queryset = get_user_model()
+    serializer_class = UserSerializer
