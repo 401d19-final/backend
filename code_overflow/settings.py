@@ -46,7 +46,7 @@ SECRET_KEY = "django-insecure-jogj_z&x2*-a+yyivxl7!$%6==@=my@pq+znios30#eqb!39rg
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["overflow-app-api.herokuapp.com"]
 
 
 # Application definition
