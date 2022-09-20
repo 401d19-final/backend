@@ -46,7 +46,7 @@ SECRET_KEY = "django-insecure-jogj_z&x2*-a+yyivxl7!$%6==@=my@pq+znios30#eqb!39rg
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["overflow-app-api.herokuapp.com"]
+ALLOWED_HOSTS =  tuple(env.list("ALLOWED_HOSTS"))
 
 
 # Application definition
@@ -61,13 +61,15 @@ INSTALLED_APPS = [
 
     #3rd party
     "rest_framework",
-
+    "corsheaders",
     #Project APP
     "overflow_app",
 ]
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
