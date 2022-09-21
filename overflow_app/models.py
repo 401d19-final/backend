@@ -2,7 +2,8 @@ from django.db import models
 from django.contrib.auth import get_user_model
 
 class Question(models.Model):
-    username = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
+    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
+    username = models.CharField("username", max_length=128)
     title = models.CharField("Title",max_length = 128)
     content = models.TextField("Content")
     created_time = models.DateTimeField("Time_created",auto_now_add=True)
@@ -15,7 +16,8 @@ class Question(models.Model):
 
 class Comment(models.Model):
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
-    username = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
+    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
+    username = models.CharField("username", max_length=128)
     content = models.TextField()
     created_time = models.DateTimeField("Time_created",auto_now_add=True)
     updated_time = models.DateTimeField("Time_updated", auto_now=True)
