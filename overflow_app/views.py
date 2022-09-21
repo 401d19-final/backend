@@ -21,6 +21,7 @@ class CommentDetail(RetrieveUpdateDestroyAPIView):
     serializer_class = CommentSerializer
 
 class CommentList(ListCreateAPIView):
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
     serializer_class = CommentSerializer
     def get_queryset(self):
         return Comment.objects.filter(question__id=self.kwargs['pk'])
