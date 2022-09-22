@@ -11,9 +11,9 @@
 Run ``python manage.py runserver`` to start the APP.
 
 ## APIs
-- ``http://127.0.0.1:8000/question`` Get/Create all questions data
-- ``http://127.0.0.1:8000/question/<int: pk>/`` Update/Delete specific question data
-- ``http://127.0.0.1:8000/comment/<int: pk>/`` Get/Update/Delete specific comment
-- ``http://127.0.0.1:8000/question/<int: pk>/comment`` Get/Create specific comment for a question
-- ``http://127.0.0.1:8000/comment/<int: pk>/`` Create a specific user
-- ``http://127.0.0.1:8000/comment/<int: pk>/`` Get/Update/Delete a user
+- ``~/question`` GET/CREATE all questions data
+- ``~/question/<int: pk>/`` UPDATE/DELETE specific question data
+- ``~/comment/<int: pk>/`` GET/UPDATE/DELETE specific comment
+- ``~/question/<int: pk>/comment`` GET/CREATE specific comment for a question
+- ``~/user/create/`` CREATE a specific user
+- ``~/user/<int: pk>`` GET/UPDATE/DELETE a user
